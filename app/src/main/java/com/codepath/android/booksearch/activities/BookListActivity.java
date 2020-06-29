@@ -1,6 +1,8 @@
 package com.codepath.android.booksearch.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,14 @@ public class BookListActivity extends AppCompatActivity {
                 // Create Intent to start BookDetailActivity
                 // Get Book at the given position
                 // Pass the book into details activity using extras
+
+                Intent i = new Intent(BookListActivity.this, BookDetailActivity.class);
+                Book book = abooks.get(position);
+                i.putExtra("book", Parcels.wrap(book));
+                startActivity(i);
+//                i.putExtra("book title", book.getTitle());
+//                i.putExtra("book author", book.getAuthor());
+//                i.putExtra("book cover", book.getCoverUrl());
             }
         });
 
