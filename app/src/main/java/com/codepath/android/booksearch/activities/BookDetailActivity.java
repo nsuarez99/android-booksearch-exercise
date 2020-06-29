@@ -2,6 +2,8 @@ package com.codepath.android.booksearch.activities;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -18,6 +20,7 @@ public class BookDetailActivity extends AppCompatActivity {
     private ImageView ivBookCover;
     private TextView tvTitle;
     private TextView tvAuthor;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class BookDetailActivity extends AppCompatActivity {
         ivBookCover = (ImageView) findViewById(R.id.ivBookCover);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvAuthor = (TextView) findViewById(R.id.tvAuthor);
+        toolbar = findViewById(R.id.toolbar);
 
         // Extract book object from intent extras
         // Use book object to populate data into views
@@ -34,6 +38,8 @@ public class BookDetailActivity extends AppCompatActivity {
         tvTitle.setText(book.getTitle());
         tvAuthor.setText(book.getAuthor());
         Glide.with(BookDetailActivity.this).load(book.getCoverUrl()).into(ivBookCover);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(book.getTitle());
     }
 
 
